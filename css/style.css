@@ -1,0 +1,41 @@
+html{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+    margin: 0;
+    background-color: aliceblue;
+}
+.hide{
+    display: none;
+}
+.main{
+    margin-top: 8rem;
+}
+.center {
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+}
+ul{
+    padding: 0;
+    margin: 0;
+}
+nav{
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    text-align: right;
+    background-color: bisque;
+}
+li{
+    user-select: none;
+    display: inline-block;
+    padding: 2rem 3rem;
+}
+li:hover{
+    background-color: azure;
+}
+a:active{
+    background-color: cornflowerblue;
+}
