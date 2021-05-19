@@ -36,35 +36,36 @@ function gameStarto(){
     game.innerHTML="PLAYING<br>";
     game.classList.add('center');
     
-    let choices = bible_question[0].choices;
+    
     
     let time=10;
     let countdown=setInterval(() => {
-        console.log(time);
+        timer.innerHTML=`TIMER: ${time}`;
         if(time==0){
             clearInterval(countdown)
-            alert('gameover');
+            timer.innerHTML="GAME OVER";
         }
-        timer.innerHTML=`TIMER: ${time}`;
         time--;
     }, 1000);
     let question_card=document.createElement('div');
+    let choices = bible_question[0].choices;
     question_card.innerHTML=
         `<p>${bible_question[0].question} </p>
-        <div class=choices_card>
-            <label><input type="radio" name="choice">${choices.a}</i></label><br>
-            <label><input type="radio" name="choice">${choices.b}</label><br>
-            <label><input type="radio" name="choice">${choices.c}</label><br>
+        <div class="choices_card">
+            <button class="btn choice-a">${choices.a}</button>
+            <button class="btn choice-b">${choices.b}</button>
+            <button class="btn choice-c">${choices.c}</button>
         </div>
     `;
     game.appendChild(question_card);
+
+
 
     // create a quit button
     let quit_button=document.createElement('button');
     quit_button.setAttribute('class','btn quit-btn');
     quit_button.innerHTML="QUIT GAME"
     game.appendChild(quit_button);
-    quit_button.style.bottom="0px";
     quit_button.addEventListener('click',gameQuit);
 }
 
