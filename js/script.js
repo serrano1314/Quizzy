@@ -16,6 +16,7 @@ let prog_question = [
 
 let welcome=document.querySelector('.welcome-screen');
 let game=document.querySelector('.game-screen');
+let timer=document.querySelector('.timer-screen');
 
 welcome.classList.remove('hide');
 welcome.innerHTML="WELOME</br>";
@@ -34,14 +35,20 @@ function gameStarto(){
     welcome.classList.add('hide');
     game.innerHTML="PLAYING<br>";
     game.classList.add('center');
-
-
-    // game.insertAdjacentHTML('afterend',bible_question[0].question);
     
     let choices = bible_question[0].choices;
-
+    
+    let time=10;
+    let countdown=setInterval(() => {
+        console.log(time);
+        if(time==0){
+            clearInterval(countdown)
+            alert('gameover');
+        }
+        timer.innerHTML=`TIMER: ${time}`;
+        time--;
+    }, 1000);
     let question_card=document.createElement('div');
-    // let choices_card=document.createElement('div');
     question_card.innerHTML=
         `<p>${bible_question[0].question} </p>
         <div class=choices_card>
@@ -50,14 +57,7 @@ function gameStarto(){
             <label><input type="radio" name="choice">${choices.c}</label><br>
         </div>
     `;
-    
-    // choices_card=innerHTML=choices.a+'<br>'+choices.b+'<br>'+choices.c;
-    
     game.appendChild(question_card);
-    // game.appendChild(choices_card);
-    // game.innerHTML= choices.a+'<br>';
-    // game.innerHTML= choices.b+'<br>';
-    // game.innerHTML= choices.c+'<br>';
 
     // create a quit button
     let quit_button=document.createElement('button');
