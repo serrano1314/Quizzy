@@ -82,15 +82,10 @@ nav li:hover{
 .quit-btn{
     position:absolute;
     top: 80%;
+    left: 46%;
     background-color: lightcoral;
 }
 ol{
     list-style:upper-alpha;
-    text-align: left;
-}
-p{
-    text-align: left;
-}
-.choices_card{
     text-align: left;
 }

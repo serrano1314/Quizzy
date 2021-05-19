@@ -6,7 +6,7 @@ let bible_question = [
             b:"Ernie 6:66",
             c:"Quiboloy 69:69"
         },
-        answer:'secret HAHA XD'
+        answer:'John 3:16'
     }
 ]
 let prog_question = [
@@ -33,6 +33,7 @@ welcome.classList.add('center');
 function gameStarto(){
     game.classList.remove('hide');
     welcome.classList.add('hide');
+    timer.classList.remove('hide');
     game.innerHTML="PLAYING<br>";
     game.classList.add('center');
     
@@ -52,12 +53,25 @@ function gameStarto(){
     question_card.innerHTML=
         `<p>${bible_question[0].question} </p>
         <div class="choices_card">
-            <button class="btn choice-a">${choices.a}</button>
-            <button class="btn choice-b">${choices.b}</button>
-            <button class="btn choice-c">${choices.c}</button>
+            <button class="choices btn">${choices.a}</button>
+            <button class="choices btn">${choices.b}</button>
+            <button class="choices btn">${choices.c}</button>
         </div>
     `;
     game.appendChild(question_card);
+
+    let choice_btn = document.querySelectorAll('.choices');
+    for(let i=0;i<3;i++){
+        choice_btn[i].addEventListener('click',()=>{
+            if(choice_btn[i].innerText === bible_question[0].answer){
+                alert('TAMA! EDI WAW');
+            }
+            else{
+                alert('WRONG');
+            }
+        });
+    }
+    
 
 
 
@@ -70,6 +84,7 @@ function gameStarto(){
 }
 
 function gameQuit(){
+    timer.classList.add('hide');
     game.classList.add('hide');
     welcome.classList.remove('hide');
     welcome.innerHTML="YOU LOSER";
