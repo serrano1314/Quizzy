@@ -72,9 +72,6 @@ function gameStarto(){
         });
     }
     
-
-
-
     // create a quit button
     let quit_button=document.createElement('button');
     quit_button.setAttribute('class','btn quit-btn');
