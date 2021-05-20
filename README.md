@@ -1,6 +1,7 @@
 # Quizzy
 Quiz Game using JS
 CREDITS:
+
 -ERNIE
 -ELVIN
 -EMERY
