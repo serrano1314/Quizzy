@@ -13,7 +13,7 @@ let prog_question = [
 
 ]
 
-
+let version=document.querySelector('footer').innerText='v0.5.2';
 let welcome=document.querySelector('.welcome-screen');
 let game=document.querySelector('.game-screen');
 let timer=document.querySelector('.timer-screen');
@@ -36,8 +36,6 @@ function gameStarto(){
     timer.classList.remove('hide');
     game.innerHTML="PLAYING<br>";
     game.classList.add('center');
-    
-    
     
     let time=10;
     let countdown=setInterval(() => {
@@ -65,17 +63,17 @@ function gameStarto(){
         choice_btn[i].addEventListener('click',()=>{
             if(choice_btn[i].innerText === bible_question[0].answer){
                 alert('TAMA! EDI WAW');
-            }
-            else{
+            }else{
                 alert('WRONG');
             }
+            clearInterval(countdown)
         });
     }
     
     // create a quit button
     let quit_button=document.createElement('button');
     quit_button.setAttribute('class','btn quit-btn');
-    quit_button.innerHTML="QUIT GAME"
+    quit_button.innerHTML="QUIT GAME";
     game.appendChild(quit_button);
     quit_button.addEventListener('click',gameQuit);
 }

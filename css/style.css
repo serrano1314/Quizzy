@@ -21,7 +21,7 @@ footer{
     bottom: 0;
     width: 100%;
     height: 30px;
-    background-color:silver;
+    background-color:rgba(0, 0, 0, 0.192);
 }
 
 .center {
@@ -29,20 +29,21 @@ footer{
     margin: auto;
 }
 h1{
-    margin: 0;
+    margin: 10px;
     float: left;
 }
 ul{
     padding: 0;
-    margin: 0;
+    
 }
-nav{
+nav ul{
+    margin: 0;
     overflow: hidden;
     position: fixed;
     top: 0;
     width: 100%;
     text-align: right;
-    background-color: bisque;
+    background-color: rgba(255, 228, 196, 0.5);
 }
 nav li{
     user-select: none;
