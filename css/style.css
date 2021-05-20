@@ -89,7 +89,8 @@ nav li:hover{
 .quit-btn{
     position:absolute;
     top: 80%;
-    left: 46%;
+    right: 0;
+    margin-right: 2rem;
     background-color: lightcoral;
 }
 ol{

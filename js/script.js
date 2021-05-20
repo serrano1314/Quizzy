@@ -7,16 +7,41 @@ let bible_question = [
             c:"Quiboloy 69:69"
         },
         answer:'John 3:16'
+    },
+    {
+        question:"Therefore he is able to save completely those who come to God through him, because he always lives to intercede for them.",
+        choices:{
+            a:"John 3:16",
+            b:"Hebrews 7:25",
+            c:"Quiboloy 69:69"
+        },
+        answer:'Hebrews 7:25'
+    },
+    {
+        question:"but in your hearts honor Christ the Lord as holy, always being prepared to make a defense to anyone who asks you for a reason for the hope that is in you; yet do it with gentleness and respect",
+        choices:{
+            a:"John 3:16",
+            b:"Hebrews 7:25",
+            c:"Peter 3:15"
+        },
+        answer:'Peter 3:15'
     }
 ]
 let prog_question = [
 
 ]
 
-let version=document.querySelector('footer').innerText='v0.5.2';
+let version=document.querySelector('footer').innerText='v0.6.0';
 let welcome=document.querySelector('.welcome-screen');
 let game=document.querySelector('.game-screen');
 let timer=document.querySelector('.timer-screen');
+let question_card=document.createElement('div');
+
+let question_number=0;
+let countdown=0;
+let time_limit = 5;
+let score = 0;
+let time=time_limit;
 
 welcome.classList.remove('hide');
 welcome.innerHTML="WELOME</br>";
@@ -30,6 +55,38 @@ start_button.addEventListener('click',gameStarto);
 
 welcome.classList.add('center');
 
+function gameArea(question_number){
+    if(question_number>=bible_question.length){
+        question_card.innerHTML="GAME OVER! YOUR SCORE: "+score;
+    } else {
+        let choices = bible_question[question_number].choices;
+        question_card.innerHTML=
+            `<p>${bible_question[question_number].question} </p>
+            <div class="choices_card">
+                <button class="choices btn">${choices.a}</button>
+                <button class="choices btn">${choices.b}</button>
+                <button class="choices btn">${choices.c}</button>
+            </div>
+        `;
+        game.appendChild(question_card);
+
+        let choice_btn = document.querySelectorAll('.choices');
+        for(let i=0;i<3;i++){
+            choice_btn[i].addEventListener('click',()=>{
+                if(choice_btn[i].innerText === bible_question[question_number].answer){
+                    score++;
+                    question_card.innerHTML="VALIDATING YOUR ANSWER, PLEASE WAIT...";
+                    time=0;
+                }
+                else {
+                    question_card.innerHTML="VALIDATING YOUR ANSWER, PLEASE WAIT...";
+                    time=0;
+                }
+            });
+        }
+    }
+}
+
 function gameStarto(){
     game.classList.remove('hide');
     welcome.classList.add('hide');
@@ -37,38 +94,24 @@ function gameStarto(){
     game.innerHTML="PLAYING<br>";
     game.classList.add('center');
     
-    let time=10;
-    let countdown=setInterval(() => {
+    
+    countdown=setInterval(() => {
         timer.innerHTML=`TIMER: ${time}`;
-        if(time==0){
-            clearInterval(countdown)
-            timer.innerHTML="GAME OVER";
+        if(question_number>=bible_question.length){ 
+            clearInterval(countdown);
         }
-        time--;
+        if(time==time_limit){
+            question_card.innerHTML="";
+            gameArea(question_number);
+        }
+        if(time==0){
+            time = time_limit;
+            question_number++
+        } else {
+            time--;
+        }
     }, 1000);
-    let question_card=document.createElement('div');
-    let choices = bible_question[0].choices;
-    question_card.innerHTML=
-        `<p>${bible_question[0].question} </p>
-        <div class="choices_card">
-            <button class="choices btn">${choices.a}</button>
-            <button class="choices btn">${choices.b}</button>
-            <button class="choices btn">${choices.c}</button>
-        </div>
-    `;
-    game.appendChild(question_card);
-
-    let choice_btn = document.querySelectorAll('.choices');
-    for(let i=0;i<3;i++){
-        choice_btn[i].addEventListener('click',()=>{
-            if(choice_btn[i].innerText === bible_question[0].answer){
-                alert('TAMA! EDI WAW');
-            }else{
-                alert('WRONG');
-            }
-            clearInterval(countdown)
-        });
-    }
+    
     
     // create a quit button
     let quit_button=document.createElement('button');
