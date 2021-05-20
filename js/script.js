@@ -57,7 +57,7 @@ welcome.classList.add('center');
 
 function gameArea(question_number){
     if(question_number>=bible_question.length){
-        question_card.innerHTML="GAME OVER! YOUR SCORE: "+score;
+        question_card.innerHTML=`GAME OVER! YOUR SCORE: ${score} / ${bible_question.length}`;
     } else {
         let choices = bible_question[question_number].choices;
         question_card.innerHTML=
