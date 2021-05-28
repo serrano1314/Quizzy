@@ -1,21 +1,29 @@
 questions_per_game=7;
 let biblical_set = []
-for(let i=0;i<questions_per_game;i++){
-    biblical_set.push(bible_question[Math.floor(Math.random()*bible_question.length)]);
+while (biblical_set.length != questions_per_game){
+  num = Math.floor(Math.random()*bible_question.length);
+  if (!(biblical_set.includes(num))){
+    biblical_set.push(bible_question[num]);
+  }
 }
+// for(let i=0;i<questions_per_game;i++){
+//     biblical_set.push(bible_question[Math.floor(Math.random()*bible_question.length)]);
+// }
 
 let prog_set = []
-for(let i=0;i<questions_per_game;i++){
-    prog_set.push(prog_question[Math.floor(Math.random()*prog_question.length)]);
+while(prog_set.length != questions_per_game){
+    num = Math.floor(Math.random()*prog_question.length);
+    if (!(biblical_set.includes(num))){
+      prog_set.push(prog_question[num]);
+    }
 }
 
-let version=document.querySelector('footer').innerText='v0.7.0';
+let version=document.querySelector('footer').innerText='v0.7.3';
 let welcome=document.querySelector('.welcome-screen');
 let game=document.querySelector('.game-screen');
 let timer=document.querySelector('.timer-screen');
 let scoring=document.querySelector('.score-screen');
 let question_card=document.createElement('div');
-
 let correct_sym=document.createElement('img');
 correct_sym.setAttribute('src','img/correct_sym.png');
 correct_sym.classList.add('symbol');
@@ -46,6 +54,11 @@ let start_button=document.createElement('button');
 start_button.setAttribute('class','btn start-btn');
 start_button.innerHTML="<p>START GAME</p>";
 
+// create a high scores button
+let scores_button=document.createElement('button');
+scores_button.setAttribute('class','btn scores-btn');
+scores_button.innerHTML="<p>HIGH SCORES</p>";
+
 // create a quit button
 let quit_button=document.createElement('button');
 quit_button.setAttribute('class','btn quit-btn');
@@ -63,6 +76,7 @@ quit_button.addEventListener('click',gameQuit);
 
 welcome.appendChild(logo);
 welcome.appendChild(start_button);
+welcome.appendChild(scores_button);
 start_button.addEventListener('click',pickTopic);
 
 welcome.classList.add('center');
@@ -158,7 +172,7 @@ function gameStarto(topic_choice){
     }, 1000);
 
 
-   
+
 }
 function playAgain(){
 
@@ -171,4 +185,13 @@ function gameQuit(){
     welcome.classList.remove('hide');
     welcome.innerHTML=`<span class="fancy">YOU LOSE</span>`;
     welcome.appendChild(play_again);
+}
+
+//New Navbar
+function openNav() {
+  document.getElementById("myNav").style.height = "100%";
+}
+
+function closeNav() {
+  document.getElementById("myNav").style.height = "0%";
 }
