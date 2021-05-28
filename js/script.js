@@ -18,7 +18,7 @@ while(prog_set.length != questions_per_game){
     }
 }
 
-let version=document.querySelector('footer').innerText='v0.7.3';
+let version=document.querySelector('footer').innerText='v0.7.4';
 let welcome=document.querySelector('.welcome-screen');
 let game=document.querySelector('.game-screen');
 let timer=document.querySelector('.timer-screen');
