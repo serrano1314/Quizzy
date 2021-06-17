@@ -81,7 +81,7 @@ play_again.innerHTML = 'Play Again';
 let save_score=document.createElement('button');
 save_score.setAttribute('class','btn save-score');
 save_score.innerHTML="Save Score";
-
+save_score.addEventListener('click',highscores)
 
 //  game.appendChild(quit_button);
 quit_button.addEventListener('click',gameQuit);
@@ -100,6 +100,7 @@ function gameArea(question_number, topic_choice){
         game.innerHTML=`<p class="fancy">GAME OVER! YOUR SCORE: ${score} / ${topic_choice.length} </p><br><br>`;
         game.appendChild(save_score);
         game.appendChild(play_again);
+        sessionStorage.setItem("high_score", score.toString());
 
     } else {
         let choices = topic_choice[question_number].choices;
@@ -133,11 +134,12 @@ function gameArea(question_number, topic_choice){
 
 
 function highscores(){
-    welcome.innerHTML = '<span class="fancy">High Scores</span><br><br>';
-
+    score = sessionStorage.getItem("high_score");
+    if(score === null)
+        score = 0;
+    welcome.innerHTML = `<span class="fancy">High Scores: ${score}</span>`;
+    welcome.appendChild(play_again)
 }
-
-
 
 // Picking a Topic
 function pickTopic(){
@@ -197,9 +199,6 @@ function gameStarto(topic_choice){
     }, 1000);
 
 
-
-}
-function playAgain(){
 
 }
 
