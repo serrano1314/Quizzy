@@ -77,12 +77,6 @@ play_again.setAttribute('class', 'btn play-again');
 play_again.setAttribute('onClick', 'window.location.reload()');
 play_again.innerHTML = 'Play Again';
 
-//sa score button
-let save_score=document.createElement('button');
-save_score.setAttribute('class','btn save-score');
-save_score.innerHTML="Save Score";
-save_score.addEventListener('click',highscores)
-
 //  game.appendChild(quit_button);
 quit_button.addEventListener('click',gameQuit);
 
@@ -98,7 +92,6 @@ function gameArea(question_number, topic_choice){
         scoring.classList.add('hide');
         timer.classList.add('hide');
         game.innerHTML=`<p class="fancy">GAME OVER! YOUR SCORE: ${score} / ${topic_choice.length} </p><br><br>`;
-        game.appendChild(save_score);
         game.appendChild(play_again);
         sessionStorage.setItem("high_score", score.toString());
 
@@ -131,7 +124,6 @@ function gameArea(question_number, topic_choice){
         }
     }
 }
-
 
 function highscores(){
     score = sessionStorage.getItem("high_score");
