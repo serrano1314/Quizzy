@@ -2,23 +2,30 @@ questions_per_game=7;
 let biblical_set = []
 while (biblical_set.length != questions_per_game){
   num = Math.floor(Math.random()*bible_question.length);
-  if (!(biblical_set.includes(num))){
+  if (!(biblical_set.includes(bible_question[num]))){
     biblical_set.push(bible_question[num]);
   }
 }
-// for(let i=0;i<questions_per_game;i++){
-//     biblical_set.push(bible_question[Math.floor(Math.random()*bible_question.length)]);
-// }
 
 let prog_set = []
 while(prog_set.length != questions_per_game){
     num = Math.floor(Math.random()*prog_question.length);
-    if (!(biblical_set.includes(num))){
+    if (!(prog_set.includes(prog_question[num]))){
       prog_set.push(prog_question[num]);
     }
 }
 
-let version=document.querySelector('footer').innerText='v0.7.4';
+
+let history_set = []
+while (history_set.length != questions_per_game) {
+      num = Math.floor(Math.random()*history_question.length);
+      if (!(history_set.includes(history_question[num]))){
+        history_set.push(history_question[num]);
+      }
+}
+
+
+let version=document.querySelector('footer').innerText='v0.8.1';
 let welcome=document.querySelector('.welcome-screen');
 let game=document.querySelector('.game-screen');
 let timer=document.querySelector('.timer-screen');
@@ -70,6 +77,11 @@ play_again.setAttribute('class', 'btn play-again');
 play_again.setAttribute('onClick', 'window.location.reload()');
 play_again.innerHTML = 'Play Again';
 
+//sa score button
+let save_score=document.createElement('button');
+save_score.setAttribute('class','btn save-score');
+save_score.innerHTML="Save Score";
+
 
 //  game.appendChild(quit_button);
 quit_button.addEventListener('click',gameQuit);
@@ -78,7 +90,7 @@ welcome.appendChild(logo);
 welcome.appendChild(start_button);
 welcome.appendChild(scores_button);
 start_button.addEventListener('click',pickTopic);
-
+scores_button.addEventListener('click',highscores);
 welcome.classList.add('center');
 
 function gameArea(question_number, topic_choice){
@@ -86,6 +98,7 @@ function gameArea(question_number, topic_choice){
         scoring.classList.add('hide');
         timer.classList.add('hide');
         game.innerHTML=`<p class="fancy">GAME OVER! YOUR SCORE: ${score} / ${topic_choice.length} </p><br><br>`;
+        game.appendChild(save_score);
         game.appendChild(play_again);
 
     } else {
@@ -118,6 +131,14 @@ function gameArea(question_number, topic_choice){
     }
 }
 
+
+function highscores(){
+    welcome.innerHTML = '<span class="fancy">High Scores</span><br><br>';
+
+}
+
+
+
 // Picking a Topic
 function pickTopic(){
     welcome.innerHTML = '<span class="fancy">PICK A TOPIC</span><br><br>';
@@ -127,14 +148,18 @@ function pickTopic(){
         <div class='topics_card'>
             <button class='topics btn'>Biblical</button>
             <button class='topics btn'>Programming</button>
+            <button class='topics btn'>History</button>
         </div>`;
     game.appendChild(question_card);
     let topic_btn = document.querySelectorAll('.topics');
     game.appendChild(quit_button);
-    for(let i=0; i<2; i++){
+    for(let i=0; i<3; i++){
         topic_btn[i].addEventListener('click', ()=>{
         if(topic_btn[i].innerHTML == 'Biblical'){
             gameStarto(biblical_set)
+        }
+        else if (topic_btn[i].innerHTML == 'History') {
+          gameStarto(history_set)
         }
         else{
             gameStarto(prog_set)

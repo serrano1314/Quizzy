@@ -117,7 +117,7 @@ nav li:hover{
 .play-again{
     margin-top: 8rem;
     position: absolute;
-    top: 20%;
+    top: 40%;
     right: 44%;
     background-color: #cc9b6d;
 }
@@ -125,9 +125,15 @@ ol{
     list-style:upper-alpha;
     text-align: left;
 }
-
+.save-score{
+    margin-top: 8rem;
+    position: absolute;
+    top: 20%;
+    right: 44%;
+    background-color: #0084ff;
+}
 .img_logo{
-    padding: 0 30%; 
+    padding: 0 30%;
     position:inherit;
     width:40%;
     top:0%;
