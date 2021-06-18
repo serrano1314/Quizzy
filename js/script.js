@@ -93,7 +93,10 @@ function gameArea(question_number, topic_choice){
         timer.classList.add('hide');
         game.innerHTML=`<p class="fancy">GAME OVER! YOUR SCORE: ${score} / ${topic_choice.length} </p><br><br>`;
         game.appendChild(play_again);
-        sessionStorage.setItem("high_score", score.toString());
+        h_score = sessionStorage.getItem("high_score");
+        if (score > parseInt(h_score) || h_score == null)
+            sessionStorage.setItem("high_score", score.toString());
+
 
     } else {
         let choices = topic_choice[question_number].choices;
